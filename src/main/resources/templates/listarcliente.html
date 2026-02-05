@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+
+</head>
+<body>
+	<!-- Menu de navegacion listas y formularios-->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a href="home">Inicio</a></li>
+					<li><a href="catalogo">Catalogo</a></li>
+
+					<li><a href="listarcliente">Clientes</a></li>
+					<li><a href="listaproveedor">Proveedor</a></li>
+					<li><a href="listarproducto"> Productos</a></li>
+					<li><a href="compra/listarcompras"> Compras</a></li>
+					<li><a href="venta/listarventas"> Ventas</a></li>
+					
+					
+					<div class="text-end">
+						
+						<div sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="post">
+								<button class="btn2 " type="submit">Salir</button>
+							</form>
+						</div>
+					</div>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+
+	<!-- Cuerpo -->
+	<main>
+		<div class="container">
+			<div th:replace="fragments/alerts :: alerts"></div>
+
+			<h1 class="text-secondary border-bottom border-dark border-3">Listado
+				de Clientes</h1>
+				<a class=" btn btn-info llll " th:href="@{/formulariocliente}">Nuevo
+						Cliente</a>
+
+
+
+			<div class="table-responsive">
+				<form class="row g-3 p-3" th:action="@{/listarcliente}">
+					<div class="buscar ">
+						<input type="text" name="filtroCliente" class="input1"
+							id="filtroCliente" placeholder="BUSCAR"
+							th:value="${filtroProducto}" required>
+						<button type="submit" class="btn1" value="buscar">&#128269;</button>
+						<button type="button" class="btn1" value="borrar"
+							onclick="limpiarCampos()">&#128466;</button>
+					</div>
+					
+				</form>
+				<table class="table table-striped">
+					<thead class="table-dark">
+						<tr>
+							<th>ID</th>
+							<th>Nombre(s)</th>
+							<th>Apellidos</th>
+							<th>DNI</th>
+							<th>Teléfono</th>
+							<th>E-mail</th>
+							<th>F. Creación</th>
+							<th sec:authorize="hasRole('ROLE_VENDEDOR')" class="text-center"
+								colspan="3">Acciones</th>
+						</tr>
+					</thead>
+					<tbody class="table-success">
+						<tr th:each="cliente: ${clientes}">
+							<td><a class="btn btn-dark text-white "
+								th:href="@{/detallecliente/} + ${cliente.id}"
+								th:text="${cliente.id}"></a></td>
+							<td th:text="${cliente.nombre}"></td>
+							<td th:text="${cliente.apellidos}"></td>
+							<td th:text="${cliente.dni}"></td>
+							<td th:text="${cliente.telefono}"></td>
+							<td th:text="${cliente.email}"></td>
+							<td th:text="${cliente.fechaCreacion}"></td>
+							<td><a class="btn icocor1"
+								th:href="@{/venta/formularioventas/} + ${cliente.id}">
+									&#128722; </a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								class="btn icocor1"
+								th:href="@{/formulariocliente/} + ${cliente.id}"> &#128221;
+							</a></td>
+							<td>
+								<!-- boton para el modal -->
+								<button sec:authorize="hasRole('ROLE_ADMIN')" type="button"
+									class="btn icocor1" data-bs-toggle="modal"
+									data-bs-target="#staticBackdrop">&#10060;</button> <!-- Modal -->
+								<div class="modal fade" id="staticBackdrop"
+									data-bs-backdrop="static" data-bs-keyboard="false"
+									tabindex="-1" aria-labelledby="staticBackdropLabel"
+									aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close">X</button>
+											</div>
+											<div class="modal-body posicion">
+												<center>
+													<img alt="advertencia" th:src="@{/imagenes/adver.png}"
+														width="100px" height="100px">
+												</center>
+												<center>
+													<h5 class="text-danger ">Confirmar eliminacion del
+														Cliente</h5>
+												</center>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-bs-dismiss="modal">Cancelar</button>
+												<a class="btn btn-danger"
+													th:href="@{/eliminarCliente/} + ${cliente.id}">Eliminar</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript">
+        function limpiarCampos() {
+            window.location='/listarcliente';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+:root{
+   --red:#038C7F;
+   --black:#252a34;
+   --blue:#0D0D0D;
+   --white:#e6dada;
+   --title:35px;
+   --text:19px;
+}
+
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #ffff;
+    overflow-x: hidden;
+    font-family: 'Red Hat Text', sans-serif;
+}
+.go-top{
+    position: fixed;
+    bottom: 100px;
+    right: -100%;
+    
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border:2px solid var(--red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.5s;
+}
+.go-top:hover{
+    background: var(--red);
+    color:#fff;
+    border: 2px solid var(--white);
+}
+.go-top:hover span{color:var(--white);}
+
+.go-top > span{
+   font-size: 30px;
+   color: var(--black);
+}
+
+
+/** Skew **/
+
+
+/** Navegation Menu **/
+#header{
+    position: relative;
+    width: 100%;
+}
+.menu{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: rgb(219, 217, 217);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+.menu .logo-box {margin-left: 20px;}
+.menu .logo-box a img{
+    width: 220px;
+    height: 90px;
+    padding: 20px 30px 20px 10px;
+    float: left;
+    margin: 0;   
+}
+.menu .list-container{margin-right: 20px;}
+.menu .list-container ul{display: flex;}
+.menu .list-container ul li{list-style: none;}
+.menu .list-container ul li a{
+    text-decoration: none;
+    margin: 0px 10px;
+    padding:8px;
+    color: var(--black);
+    border-radius: 24px;
+    transition: 0.3s;
+    font-size: 20px;
+}
+.menu .list-container ul li a:hover{
+    background: var(--red);
+    color:#fff;
+}
+
+.btn-menu > .fa-bars{
+    display: none;
+}
+
+
+
+ .mapa-container{
+    padding-top: 180px;
+   
+ }
+ .mapa{
+    padding-top: 0px;
+    float: right;
+    margin-right: 40px;
+    border:2px solid black;
+    float: right;
+
+
+ }
+ .direccion{
+   margin-left: 50px;
+   line-height: 47px;
+ }
+ .direccion h2{
+   font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
+   color: #414b53;
+   font-size: 14px;
+ }
+.direccion h3{
+   color: #2a334b;
+   font-size: 25px;
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.direccion h4{
+   font-family: 'Times New Roman', Times, serif;
+   color: #414b53;
+   font-size: 20px;
+}
+.direccion img{
+   width: 25px;
+   height: 25px;
+   float: left;
+   margin-right: 20px;
+}
+.direccion h5{
+   font-family:'Times New Roman', Times, serif ;
+   color: black;
+   font-size: 18px;
+   
+}
+.direccion a{
+   font-family:'Times New Roman', Times, serif;
+   color: black;
+   font-size: 18px;
+}
+.direccion a:hover{
+   color: #097f76;
+   text-decoration: none;
+}
+
+.direccion h6{
+   font-family:Arial, Helvetica, sans-serif;
+   color: black;
+   font-size: 18px;
+}
+.delivery img{
+   width: 40px;
+   height: 40px;
+}
+
+.icocor4 {
+	font-size: 33px;
+}
+
+.separacion{
+   padding:3vh;
+}
+
+ 
+ 

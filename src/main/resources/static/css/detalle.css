@@ -1,0 +1,86 @@
+.navbar{
+    background:#dbd9d9;
+   padding: 10px 0px 0px 0px;
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100px;
+   width: 100%;
+   border-bottom: 2px solid #dadde8;
+   justify-content: space-between;
+   
+}
+.logo-empresa{
+    
+    margin: 0px 10px 0px 185px;
+    
+}
+.logo img{
+    width: 225px;
+    height: 95px;
+    padding: 5px 30px 20px 0;
+    float: left;
+    margin: 0;
+ 
+    
+ }
+
+a{
+    color: #222;
+}
+.row{
+    display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.container{
+   
+    display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+ }
+.navegacion ul {        
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    
+ }
+ .navegacion ul li{
+    display: inline-block;
+ 
+ }
+ .navegacion ul li a{
+    display: block;
+    padding:8px 16px ;
+    border-radius: 5px;
+    font-size: 23px;
+    text-align: right;
+ }
+ .navegacion ul li a:hover {
+    background: #038c7f;
+    color:#fff;
+    border-radius: 17px;
+    text-decoration: none;
+    
+ }
+ .container1{
+	 
+    margin:0 auto;
+    padding:3rem 2rem;
+    
+    padding:200px 20px 20px 20px;
+    margin: 0px 7px 7px 10px;
+	
+}
+
+.container2{
+    margin:0 auto;
+    padding:3rem 2rem;
+    
+    padding:170px 20px 20px 20px;
+    margin: 0px 7px 7px 10px;
+	
+}

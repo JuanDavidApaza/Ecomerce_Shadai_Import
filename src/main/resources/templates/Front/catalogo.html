@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Catalogo</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+
+
+<link rel="stylesheet" th:href="@{/css/catalogo.css}">
+</head>
+<body>
+	<h1>Catalogo</h1>
+
+	<!-- Menu de Navegacion -->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a href="/home">Inicio</a></li>
+					<li><a href="catalogo">Catalogo</a></li>
+					<li><a sec:authorize="hasRole('ROLE_USER')" href="contactenos">
+							Contactanos</a></li>
+					<li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/getcarrito}">
+						 <img th:src="@{/imagenes/cart.jpeg}" height="50px"
+                                width="50px" class="car-img"></img></a></li>		
+		
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarcliente">Clientes</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listaproveedor">Proveedor</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarproducto"> Productos</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')" href="compra/listarcompras"> Conmpras</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')" href="venta/listarventas"> Ventas</a></li>
+					<div class="text-end">
+						<div sec:authorize="!isAuthenticated()">
+							<a class="btn1 " th:href="@{/login}">Ingresar</a>
+						</div>
+						<div sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="post">
+								<button class="btn2 " type="submit">Salir</button>
+							</form>
+						</div>
+					</div>
+				</ul>
+
+			</div>
+		</nav>
+	</header>
+	<main>
+		<form class="form-inline my-2 my-lg-0" method="post"
+			th:action="@{/buscar}">
+			<div class="buscar">
+				<input class="input1" type="text" name="buscador" id="buscador"
+					placeholder="¿Que Desea Buscar.................">
+
+
+			</div>
+		</form>
+
+		<h3 class="titulo">Productos Dentales</h3>
+
+		<div class="contenedor" id="lista-productos">
+
+			<div class="productos-container" th:each="producto : ${productos}">
+
+				<div class="caja">
+
+					<div class="card-body">
+
+						<img alt="" th:src="@{/images/{img} (img=${producto.imagen})}">
+						<h4 class="caja-titulo" th:text="${producto.nombre}"></h4>
+
+						<h1 class="card-title pricing-card-title precio">
+							S/. <span th:text="${producto.precioVenta}">s/</span>
+						</h1>
+						<a th:href="@{/productodetalle/{id} (id=${producto.id}) }"
+							class="btn btn-block btn-primary agregar-carrito">Ver
+							Producto</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</main>
+	<script th:src="@{/js/carrito.js}"></script>
+	<script th:src="@{/js/catalogo.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Compras</title>
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+</head>
+<body>
+
+	<!-- Menu de navegacion listas y formularios-->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a th:href="@{/home}">Inicio</a></li>
+					<li><a th:href="@{/catalogo}">Catalogo</a></li>
+
+					<li><a th:href="@{/listarcliente}">Clientes</a></li>
+					<li><a th:href="@{/listaproveedor}">Proveedor</a></li>
+					<li><a th:href="@{/listarproducto}"> Productos</a></li>
+					
+					<li><a th:href="@{listarcompras}"> Compras</a></li>
+					<li><a th:href="@{/venta/listarventas}"> Ventas</a></li>
+					
+					<div class="text-end">
+						
+						<div sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="post">
+								<button class="btn2 " type="submit">Salir</button>
+							</form>
+						</div>
+					</div>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+	
+	
+    <!-- Cuerpo -->
+    <main>
+	
+	<div class="container">
+	
+	<div th:replace="fragments/alerts :: alerts"></div>
+		<div class="row justify-content-end">
+            <div class="col">
+                <h1 class="text-secondary border-bottom border-dark border-3">Lista de Compras</h1>
+            </div>
+		</div>
+		
+		<div class="table-responsive">
+		<form class="row g-3 p-3" th:action="@{/compra/listarcompras}">
+                    <div class="buscar">
+                        <input type="text" name="filtrocompra" class="input1" id="filtrocompra"
+                            placeholder="BUSCAR" th:value="${filtrocompra}" required>
+                    
+                    <button type="submit" class="btn1" value="buscar">&#128269;</button>
+                    <button type="button" class="btn1" value="borrar" onclick="limpiarCampos()">&#128466;</button>
+                    </div>
+                    <div>
+                    <h5 th:value="${error}"></h5>
+                    </div>
+                    
+                </form>
+			<table class="table table-striped ">
+				<thead class="table-dark">
+					<tr>
+						<th>ID</th>
+							<th>DESCRIPCION</th>
+							<th>FECHA DE COMPRA</th>
+							<th>TOTAL</th>
+					</tr>
+				</thead>
+				<tbody class="table-success">
+					<tr th:each="compra: ${compras}">
+							<td th:text="${compra.id}"></td>
+							<td th:text="${compra.descripcion}"></td>
+							<td th:text="${compra.fechacreacion}"></td>
+							<td th:text="'S/ ' + ${compra.calcularTotal()}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</main>
+	<script type="text/javascript">
+        function limpiarCampos() {
+            window.location='/compra/listarcompras';
+        }
+    </script>
+</body>
+</html>

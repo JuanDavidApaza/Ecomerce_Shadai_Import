@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Productos</title>
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+</head>
+<body>
+	<!-- Menu de navegacion listas y formularios-->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a href="home">Inicio</a></li>
+					<li><a href="catalogo">Catalogo</a></li>
+
+					<li><a href="listarcliente">Clientes</a></li>
+					<li><a href="listaproveedor">Proveedor</a></li>
+					<li><a href="listarproducto"> Productos</a></li>
+					<li><a href="compra/listarcompras"> Compras</a></li>
+					<li><a href="venta/listarventas"> Ventas</a></li>
+					
+					<div class="text-end">
+						
+						<div sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="post">
+								<button class="btn2 " type="submit">Salir</button>
+							</form>
+						</div>
+					</div>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+	
+	<!-- Cuerpo -->
+	<main>
+		<div class="container">
+			<div th:replace="fragments/alerts :: alerts"></div>
+			
+					<h1 class="text-secondary border-bottom border-dark border-3 ">Lista
+						de Productos</h1>
+						<a class=" btn btn-info llll " th:href="@{/formularioproducto}">Nuevo
+						Producto</a>
+			<div class="table-responsive">
+				<form class="row g-3 p-3" th:action="@{/listarproducto}">
+                    <div class="buscar">
+                        <input type="text" name="filtroProducto" class="input1" id="filtroProducto"
+                            placeholder="BUSCAR" th:value="${filtroProducto}" required>
+                    
+                    <button type="submit" class="btn1" value="buscar">&#128269;</button>
+                    <button type="button" class="btn1" value="borrar" onclick="limpiarCampos()">&#128466;</button>
+                    </div>
+                    
+                </form>
+				<table class="table table-striped">
+					<thead class="table-dark">
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+							<th>Stock</th>
+							<th>Precio Compra</th>
+							<th>Precio Venta</th>
+							<th>F. Creación</th>
+							<th class="text-center" colspan="2">Acciones</th>
+						</tr>
+					</thead>
+					<tbody class="table-success">
+						<tr th:each="producto: ${productos}">
+							<td th:text="${producto.id}"></td>
+							<td th:text="${producto.nombre}"></td>
+							<td th:text="${producto.descripcion}"></td>
+							<td th:text="${producto.stock}"></td>
+							<td th:text="${producto.precioCompra}"></td>
+							<td th:text="${producto.precioVenta}"></td>
+							<td th:text="${producto.fechaCreacion}"></td>
+							<td><a class="btn icocor1"
+								th:href="@{/formularioproducto/} + ${producto.id}"> &#128221;
+								</a>
+							</td>
+							<td>
+							<!-- boton para el modal -->
+						<button sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn icocor1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							  &#10060;
+							</button>
+							<!-- Modal -->
+							<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+							      </div>
+							      <div class="modal-body posicion">
+							        <center><img alt="advertencia" th:src="@{/imagenes/adver.png}" width="100px" height="100px" ></center>
+							        <center><h5 class="text-danger ">Confirmar eliminacion del Producto</h5></center>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							        <a class="btn btn-danger" th:href="@{/eliminarProducto/} + ${producto.id}">Eliminar</a>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript">
+        function limpiarCampos() {
+            window.location='/listarproducto';
+        }
+    </script>
+</body>
+</html>

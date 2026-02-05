@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Spring eCommerce</title>
+
+<link rel="stylesheet" th:href="@{/css/catalogo.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap5.css}">
+</head>
+
+<body>
+
+	<!-- Menu de Navegacion -->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a href="/home">Inicio</a></li>
+					<li><a href="catalogo">Catalogo</a></li>
+					<li><a href="contactenos"> Contactanos</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarcliente">Clientes</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listaproveedor">Proveedor</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarproducto"> Productos</a></li>
+					<li><a href="listarcliente"> Iniciar Sesion</a></li>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+
+	<!-- Cuerpo -->
+	
+	<div class=" recat">
+	<a th:href="@{/catalogo}" class="btn btn-info">Regresar al catalogo</a>
+	</div>
+	
+	<div class="separacion">
+		<div class="card mb-4 ">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-lg-9 table-responsive">
+						<table class="table table-striped">
+							<thead class="table-dark">
+								<tr>
+									<th>Producto</th>
+									<th>Precio</th>
+									<th>Cantidad</th>
+									<th>Total</th>
+									<th>Acción</th>
+								</tr>
+							</thead>
+							<tbody class="table-success">
+								<tr th:each="dpedido:${carrito}">
+									<td th:text="${dpedido.nombre}"></td>
+									<td th:text="${dpedido.precio}"></td>
+									<td th:text="${dpedido.cantidad}"></td>
+									<td th:text="${dpedido.total}"></td>
+									<td><a
+										th:href="@{/delete/carrito/{id} (id=${dpedido.producto.id}) }"
+										class="btn icocor1">&#10060;</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-lg-3">
+						<h2 class="card-title">Pedido</h2>
+						
+						<h6>Pago contraentrega</h6>
+
+						<ul class="list-group">
+							<li class="list-group-item bsep"><h5
+									th:text="'Total S/: '+ ${pedido.total}"></h5></li>
+								<a class="btn btn-info p-2 fw-bolder fs-5 btn1 bsep" >Continuar Pedido</a>
+								
+						</ul>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot App</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-dark" th:text="${titulo}"></div>
+		  	<div class="card-body">
+		  		<a class="btn btn-secondary w-100 mb-2" th:href="@{/detalleproveedor/} + ${compra.proveedor.id}">Regresar</a>
+		  		<ul class="list-group">
+		  			<li class="list-group-item" th:text="'Nro: ' + ${compra.id}"></li>
+				  	<li class="list-group-item" th:text="'Descripción: ' + ${compra.descripcion}"></li>
+				  	<li class="list-group-item" th:text="'Proveedor: ' + ${compra.proveedor.nombres} + ' ' + ${compra.proveedor.apellido}"></li>
+				  	<li class="list-group-item" th:text="'DNI: ' + ${compra.proveedor.dni}"></li>
+				  	<li class="list-group-item" th:text="'Telefono: ' + ${compra.proveedor.telefono}"></li>
+				</ul>
+				<table class="table table-striped mt-2">
+					<thead>
+						<tr>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Subtotal (S/)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="element: ${compra.elements}">
+							<td th:text="${element.producto.nombre}"></td>
+							<td th:text="'S/ ' + ${element.producto.precioCompra}"></td>
+							<td th:text="${element.cantidad}"></td>
+							<td th:text="'S/ ' + ${element.calcularSubtotal}"></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td class="fw-bold" colspan="3">TOTAL:</td>
+							<td class="fw-bold" th:text="'S/ ' + ${compra.calcularTotal}"></td>
+						</tr>
+					</tfoot>
+				</table>
+		  	</div>
+		</div>
+	</div>
+	
+</body>
+</html>

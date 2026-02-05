@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario compras</title>
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/detalle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.css}">
+</head>
+<body>
+<header class="headerr">
+		<div class="container">
+
+			<div class="row ">
+
+				<nav class="navbar  navbar-expand-md  ">
+					<div class="logo-empresa">
+						<div class="logo">
+							<img th:src="@{/imagenes/LOGO_empresa.png}" alt="">
+						</div>
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarCollapse"
+							aria-controls="navbarCollapse" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+
+					<nav class="navegacion">
+						<ul>
+							
+							<li><a th:href="@{/listarcliente}">Clientes</a></li>
+							<li><a th:href="@{/listaproveedor}">Proveedor</a></li>
+							<li><a th:href="@{/listarproducto}"> Productos</a></li>
+							
+						</ul>
+					</nav>
+				</nav>
+			</div>
+		</div>
+	</header>
+<div class="container2">
+<div th:replace="fragments/alerts :: alerts"></div>
+		<h1 class="text-secondary border-bottom border-3 border-dark" th:text="${titulo}"></h1>
+		<form th:action="@{/compra/formulariocompras}" th:object="${compra}" method="post">
+			<div class="col-4 mt-3">
+				<label class="form-label">Proveedor:</label>
+				<div>
+					<input class="form-control" type="text" th:value="${compra.proveedor.nombres} + ' ' + ${compra.proveedor.apellido}" disabled>
+				</div>
+			</div>			
+			<div class="col-4 mt-3">
+				<label class="form-label" for="descripcion">Descripción:</label>
+				<div>
+					<input class="form-control" type="text" placeholder="Ingrese la descripción" th:field="*{descripcion}" th:errorclass="'bg-danger bg-opacity-25'" autofocus>
+				</div>
+				<small class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+			</div>
+			<div class="col-4 mt-3">
+				<label class="form-label" for="producto">Producto</label>
+				<div>
+					<input class="form-control" type="text" placeholder="Ingrese el producto" name="producto" id="producto">
+				</div>
+			</div>
+			<table th:replace="fragments/compraProductos :: plantilla"></table>			
+			<div class="table-responsive">
+				<table class="table table-sm table-striped mt-3" id="productosSeleccionados">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Subtotal</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			
+			<h4>Total: <span class="badge bg-secondary" id="total">S/ 0.0</span></h4>
+			
+			<div class="col-4 mt-3">
+				<input class="w-100 btn btn-success btn-lg llll mt-2 " type="submit" value="Enviar">
+			</div>
+		</form>
+	</div>
+	
+	<!-- Scripts -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-3.6.0.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
+	<script type="text/javascript" th:src="@{/js/autocomplete.js}"></script>
+</body>
+</html>

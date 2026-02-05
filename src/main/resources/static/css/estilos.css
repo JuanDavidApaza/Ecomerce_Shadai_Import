@@ -1,0 +1,130 @@
+@charset "ISO-8859-1";
+
+
+main{
+	padding:160px 0px 0px 85px;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+}
+.headerr{
+    background:#1f4964;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    
+}
+.headerr a{
+    color: white;
+    text-decoration: none;
+}
+.logo img{
+    width: 100px;
+    height: 100px;
+    padding: 5px 30px 20px 0;
+    float: left;
+    margin: 0;
+
+    
+}
+.logo-nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navegacion ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    
+}
+.navegacion ul li{
+    display: inline-block;
+
+}
+.navegacion ul li a{
+    display: block;
+    padding:8px 16px ;
+    border-radius: 5px;
+    font-size: 23px;
+    text-align: right;
+}
+.navegacion ul li a:hover {
+    background: #4a4a4a;
+    color: white;
+}
+table{
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+	
+}
+.table-responsive{
+	padding-top: 80px
+
+}
+thead{
+	background-color: #1a7e39;
+	border-bottom: 5px;
+	color: white;
+}
+tr:hover td{
+	background-color: #9dc4d8;
+	color: white;
+}
+th{
+	border: 2px solid black;
+	padding-left: 12px;
+	padding-right: 12p;
+	padding-top: 10px;
+	
+	
+}
+.btn{
+	position:relative;
+	left:1000px;
+	background: #0d73b6;
+	color: white;
+}
+.btn:hover{
+	background-color: #2a648a;
+	color: white;
+	
+	
+}
+.caja{
+	margin: 15px 40px 0px 0px;
+    width: 318px;
+    height: 215px;
+    float: right;
+    border: 5px solid black;
+	
+	
+}
+
+@media  only screen and (max-width: 710px ) {
+    
+    
+    
+    .btn{
+	position:relative;
+	left:350px;
+	background: #0d73b6;
+	color: white;
+	font-size: 10px;
+	
+}
+.btn:hover{
+	background-color: #2a648a;
+	color: white;
+	
+	
+}
+
+}

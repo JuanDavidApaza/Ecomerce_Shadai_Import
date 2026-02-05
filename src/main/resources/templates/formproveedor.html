@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Formulario Proveedores</title>
+</head>
+<body>
+     <header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+
+					<li><a href="listarcliente">Clientes</a></li>
+					<li><a href="listaproveedor">Proveedor</a></li>
+					<li><a href="listarproducto"> Productos</a></li>
+					
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <!-- Main -->
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Registrar de Proveedor</h2>
+            </div>
+        
+            <div  class="row g-5 pb-5 justify-content-center"  >
+                <div class="col-md-7 col-lg-8">
+                <form th:action="@{/formproveedor}" th:object="${proveedor}" method="post" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input th:field="*{nombres}" type="text" class="form-control" id="nombre" placeholder="" value="" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
+                            <div class="invalid-feedback">
+                                Ingrese los nombres.
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input th:field="*{apellido}" type="text" class="form-control" id="apellidos" placeholder="" value="" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+                            <div class="invalid-feedback">
+                                Ingrese los apellidos.
+                            </div>
+                        </div>
+            
+                        <div class="col-12">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input th:field="*{dni}" type="text" class="form-control" id="dni" placeholder="12345678" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+                            <div class="invalid-feedback">
+                                Ingrese el DNI.
+                            </div>
+                        </div>
+            
+                        <div class="col-12">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input th:field="*{telefono}" type="text" class="form-control" id="telefono" placeholder="987654321">
+                            <small class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+                            <div class="invalid-feedback">
+                                Ingrese el teléfono.
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="empresa" class="form-label">Empresa</label>
+                            <input th:field="*{empresa}" type="text" class="form-control" id="empresa" placeholder="">
+                            <small class="text-danger" th:if="${#fields.hasErrors('empresa')}" th:errors="*{empresa}" ></small>
+                            <div class="invalid-feedback">
+                                Ingrese La Empresa a la que pertenece.
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="ruc" class="form-label">R.U.C</label>
+                            <input th:field="*{ruc}" type="text" class="form-control" id="ruc" placeholder="987654321123">
+                            <small class="text-danger" th:if="${#fields.hasErrors('ruc')}" th:errors="*{ruc}" ></small>
+                            <div class="invalid-feedback">
+                                Ingrese el R.U.C
+                            </div>
+                        </div>
+                    </div>
+        
+                    <hr class="my-4">
+        
+                    <button class="w-100 btn btn-info llll btn-lg " type="submit">Guardar Datos</button>
+                </form>
+                </div>
+            </div>
+        </main>
+        </div>
+    <!-- /Main -->
+</body>
+</html>

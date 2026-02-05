@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/404.css}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<title>Error: 404</title>
+</head>
+<body>
+	<div class="container">
+        <img th:src="@{/imagenes/img1.svg}" alt="">
+        
+        <h1>Lo sentimos <span sec:authentication="name" class="fw-bold"></span>, esta página no existe :(</h1>
+        <div class="boton">
+            <a class="btn btn-outline-light" th:href="@{/home}">Ir a Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

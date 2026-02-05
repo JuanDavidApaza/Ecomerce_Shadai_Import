@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Ventas</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+</head>
+<body>
+<body class="text-center">
+                <main class="form-signin w-100 m-auto">
+                    <form>
+                        <img th:src="@{/imagenes/icono_ pagina.png}" alt="">
+                        <h1 class="h3 mb-3 fw-normal">Registarse</h1>
+                        <div th:replace="fragments/alerts :: alerts"></div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="gmail" id="floatingInput" placeholder="Ingrese Correo" required autofocus> 
+                            <label for="floatingInput"></label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Ingrese Usuario" required autofocus> 
+                            <label for="floatingInput"></label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Ingrese Clave" required>
+                            <label for="floatingPassword"> </label>
+                        </div>
+            
+                        
+                        <button class="btn" type="submit">Registrarse</button>
+                        <p class="mt-5 mb-3 text-muted">&copy; Spring Boot App 2022 - IDAT</p>
+                    </form>
+                </main>
+            </body> 
+            
+	
+</body>
+</html>

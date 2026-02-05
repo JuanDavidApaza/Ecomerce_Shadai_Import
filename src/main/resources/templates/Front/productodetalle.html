@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Detalle</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap5.css}">
+<link rel="stylesheet" th:href="@{/css/catalogo.css}">
+</head>
+<body>
+
+
+	<!-- Menu de Navegacion -->
+	<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+					<li><a href="/home">Inicio</a></li>
+					<li><a href="catalogo">Catalogo</a></li>
+					<li><a href="contactenos"> Contactanos</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarcliente">Clientes</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listaproveedor">Proveedor</a></li>
+					<li><a sec:authorize="hasRole('ROLE_VENDEDOR')"
+						href="listarproducto"> Productos</a></li>
+					<li><a href="listarcliente"> Iniciar Sesion</a></li>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Page Content -->
+
+	<hr class="my-4">
+	<hr class="my-4">
+
+	<!-- Cuerpo -->
+	<div class=" recat">
+	<a th:href="@{/catalogo}" class="btn btn-info">Regresar al catalogo</a>
+	</div>
+	
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="row gx-4 gx-lg-5 align-items-center">
+				<div class="col-md-6">
+					<img class="card-img-top mb-5 mb-md-0"
+						style="max-width: 600px; max-height: 700px; width: 100%; height: auto;"
+						th:src="@{/images/{img} (img=${producto.imagen})}" alt="" />
+				</div>
+				<div class="col-md-6">
+					<form th:action="@{/carrito}" method="POST">
+						<input type="hidden" th:value="${producto.id}" name="id">
+						<h1 class="display-5 fw-bolder" th:text="${producto.nombre}"></h1>
+						<div class="fs-5 mb-5">
+							<span th:text="'S/ '+ ${producto.precioVenta}"></span>
+						</div>
+						<p class="lead" th:text="'Descripción: '+ ${producto.descripcion}"></p>
+						<div class="d-flex">
+							<input class="form-control text-center me-3" id="cantidad"
+								autocomplete="off" name="cantidad" type="number" min="1" max="5"
+								value="1" style="max-width: 4rem" />
+							<button class="btn btn-outline-dark flex-shrink-0" type="submit">
+								<i class="bi-cart-fill me-1"></i> Añadir al carrito
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Cuerpo -->
+	
+</body>
+</html>

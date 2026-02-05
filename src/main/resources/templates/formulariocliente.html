@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario Clientes</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header id="header">
+		<nav class="menu">
+			<div class="logo-box">
+				<a href="#"><img th:src="@{/imagenes/LOGO_empresa.png}" alt=""></a>
+				<span class="btn-menu"><i class="fas fa-bars"></i></span>
+			</div>
+
+			<div class="list-container">
+				<ul class="lists">
+
+					<li><a href="listarcliente">Clientes</a></li>
+					<li><a href="listaproveedor">Proveedor</a></li>
+					<li><a href="listarproducto"> Productos</a></li>
+					
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <!-- Main -->
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h2>REGISTRO DE CLIENTES</h2>
+            </div>
+        
+            <div class="row g-5 pb-5 justify-content-center">
+                <div class="col-md-7 col-lg-8">
+                <form class="needs-validation" th:action="@{/formulariocliente}" th:object="${cliente}" method="post" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="" value="" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                        </div>
+            
+                        <div class="col-sm-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" th:field="*{apellidos} " class="form-control" id="apellidos" placeholder="" value="" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+                        </div>
+            
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="you@example.com">
+                            <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+            
+                        <div class="col-12">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" th:field="*{dni} " class="form-control" id="dni" placeholder="12345678" required>
+                            <small class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+                        </div>
+            
+                        <div class="col-12">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="text" th:field="*{telefono} " class="form-control" id="telefono" placeholder="987654321">
+                            <small class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+                        </div>
+                    </div>
+        
+                    <hr class="my-4">
+        
+                    <button class="w-100 btn btn-info llll btn-lg " type="submit">ENVIAR DATOS</button>
+                </form>
+                </div>
+            </div>
+        </main>
+        <!-- /Main -->
+        </div>
+	 
+</body>
+</html>
+
+
+
+
+
